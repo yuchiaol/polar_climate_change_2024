@@ -1,0 +1,645 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HW Polar Vortex &amp; Machine Learning &#8212; Polar Climate Change</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CNN Demonstration" href="hw_deep_learning.html" />
+    <link rel="prev" title="HW Sea-ice Data Illustration" href="hw_sea_ice.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/ClimateDashboard_ArcticSeaIce_minimum_2019_map_large.jpeg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Polar Climate Change</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="syllabus.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="overview_arctic.html">
+   Overview of Arctic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="snow.html">
+   Snow
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="permafrost.html">
+   Permafrost
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="glaciers.html">
+   Glaciers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sea_ice.html">
+   Sea Ice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cause_aa.html">
+   Cause of Arctic Amplification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="effect_aa.html">
+   Arctic-Midlatitude Linkage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pv_ssw.html">
+   Polar Stratospheric Circulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hw_lbm.html">
+   HW Linear Baroclinic Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hw_sea_ice.html">
+   HW Sea-ice Data Illustration
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   HW Polar Vortex &amp; Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hw_deep_learning.html">
+   CNN Demonstration
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../_sources/docs/hw_polar_vortex.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/hw_polar_vortex.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/quantecon-mini-example/master?urlpath=tree/mini_book/docs/hw_polar_vortex.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#individual-work">
+   Individual Work
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#credits-10">
+   Credits: 10%
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grading">
+   Grading:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deadline-xxx">
+   Deadline: xxx
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-tasks">
+   The Tasks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples">
+   Examples
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#results">
+   Results
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#source">
+   Source
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="hw-polar-vortex-machine-learning">
+<span id="python-by-example"></span><h1>HW Polar Vortex &amp; Machine Learning<a class="headerlink" href="#hw-polar-vortex-machine-learning" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="individual-work">
+<h2>Individual Work<a class="headerlink" href="#individual-work" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="credits-10">
+<h2>Credits: 10%<a class="headerlink" href="#credits-10" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="grading">
+<h2>Grading:<a class="headerlink" href="#grading" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Yu-Chiao Liang (4%)</p></li>
+<li><p>TA xxx (3%)</p></li>
+<li><p>TA xxx (3%)</p></li>
+</ul>
+</div>
+<div class="section" id="deadline-xxx">
+<h2>Deadline: xxx<a class="headerlink" href="#deadline-xxx" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="the-tasks">
+<h2>The Tasks<a class="headerlink" href="#the-tasks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Use zonal winds (U) at 10 hPa to categorize different type of stratospheric polar vortex.</p></li>
+<li><p>Understand the basic idea of unsupervised machine learning technique.</p></li>
+<li><p>Be familiar with using the hierarchical clustering with Python package - <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.cluster.hierarchy.fcluster.html">scipy</a>.</p></li>
+<li><p>Use other clustering method, for example, k-means cluster.</p></li>
+<li><p>Create dendrogram.</p></li>
+<li><p>Explain and interpret your results properly.</p></li>
+</ul>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>I prepare a python script for your reference based on <a class="reference external" href="https://journals.ametsoc.org/view/journals/bams/99/1/bams-d-16-0259.1.xml">Kretschmer et al. (2018)</a>.</p>
+<ul class="simple">
+<li><p>Import functions and pachages</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ================================================================</span>
+<span class="c1"># Yu-Chiao @ WHOI Feb 22, 2019</span>
+<span class="c1"># Heirarchical cluster deomstration</span>
+<span class="c1"># ================================================================</span>
+
+<span class="c1"># ================================================================</span>
+<span class="c1"># Import functions</span>
+<span class="c1"># ================================================================</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">mlab</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">ast</span>
+<span class="kn">import</span> <span class="nn">matplotlib.path</span> <span class="k">as</span> <span class="nn">mpath</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="n">setp</span>
+
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfeature</span>
+<span class="kn">from</span> <span class="nn">cartopy.mpl.ticker</span> <span class="kn">import</span> <span class="n">LongitudeFormatter</span><span class="p">,</span> <span class="n">LatitudeFormatter</span>
+<span class="kn">import</span> <span class="nn">cartopy.io.img_tiles</span> <span class="k">as</span> <span class="nn">cimgt</span>
+<span class="kn">from</span> <span class="nn">cartopy.io.img_tiles</span> <span class="kn">import</span> <span class="n">StamenTerrain</span>
+
+<span class="kn">from</span> <span class="nn">scipy.cluster.hierarchy</span> <span class="kn">import</span> <span class="n">dendrogram</span><span class="p">,</span> <span class="n">linkage</span>
+<span class="kn">from</span> <span class="nn">scipy.cluster.hierarchy</span> <span class="kn">import</span> <span class="n">cophenet</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">pdist</span>
+<span class="kn">from</span> <span class="nn">scipy.cluster.hierarchy</span> <span class="kn">import</span> <span class="n">fcluster</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Define functions</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fancy_dendrogram</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">max_d</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;max_d&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">max_d</span> <span class="ow">and</span> <span class="s1">&#39;color_threshold&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;color_threshold&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_d</span>
+    <span class="n">annotate_above</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;annotate_above&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">ddata</span> <span class="o">=</span> <span class="n">dendrogram</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;no_plot&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Hierarchical Clustering Dendrogram (truncated)&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;sample index or (cluster size)&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;distance&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ddata</span><span class="p">[</span><span class="s1">&#39;icoord&#39;</span><span class="p">],</span> <span class="n">ddata</span><span class="p">[</span><span class="s1">&#39;dcoord&#39;</span><span class="p">],</span> <span class="n">ddata</span><span class="p">[</span><span class="s1">&#39;color_list&#39;</span><span class="p">]):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="n">annotate_above</span><span class="p">:</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%.3g</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">y</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">),</span>
+                             <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">,</span>
+                             <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">max_d</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">max_d</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ddata</span>
+
+<span class="k">def</span> <span class="nf">reverse_colourmap</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;my_cmap_r&#39;</span><span class="p">):</span>
+    <span class="n">reverse</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">cmap</span><span class="o">.</span><span class="n">_segmentdata</span><span class="p">:</span>
+        <span class="n">k</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">channel</span> <span class="o">=</span> <span class="n">cmap</span><span class="o">.</span><span class="n">_segmentdata</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">channel</span><span class="p">:</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">reverse</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+
+    <span class="n">LinearL</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">reverse</span><span class="p">))</span>
+    <span class="n">my_cmap_r</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">LinearSegmentedColormap</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">LinearL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">my_cmap_r</span>
+
+<span class="k">def</span> <span class="nf">read_fields_here</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+
+    <span class="n">f</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">lon</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">][:]</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">lat</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">][:]</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">u10</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;var_in&#39;</span><span class="p">][:,:,:]</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">z10</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;var2_in&#39;</span><span class="p">][:,:,:]</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">u10</span><span class="p">,</span> <span class="n">z10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Main script starts</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ================================================================</span>
+<span class="c1"># main starts</span>
+<span class="c1"># ================================================================</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">inargs</span><span class="p">,</span><span class="n">year_st</span><span class="p">,</span><span class="n">year_ed</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Run the program.&quot;&quot;&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;program finishes here&#39;</span><span class="p">)</span>
+
+<span class="c1"># ================================================================</span>
+<span class="c1"># Describe this script and control flags</span>
+<span class="c1"># ================================================================</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+   <span class="n">description</span><span class="o">=</span><span class="s1">&#39;code template&#39;</span>
+
+   <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">)</span>
+
+   <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;run_flag&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;False: do not run main program, just plotting figure; True: run the main program&quot;</span><span class="p">)</span>
+
+   <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+   <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+
+   <span class="n">flag_rm_tropics</span> <span class="o">=</span> <span class="mi">1</span>
+   <span class="n">flag_Plumb</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="n">flag_long_term_basic_flow</span> <span class="o">=</span> <span class="mi">1</span>
+
+   <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+   <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+
+   <span class="n">year</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1979</span><span class="p">,</span><span class="mi">2015</span><span class="p">,</span><span class="mi">37</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Set cluster parameters and linking matrix</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ================================================================    </span>
+<span class="c1"># Set parameters</span>
+<span class="c1"># ================================================================</span>
+<span class="c1"># Set the number of clusters</span>
+   <span class="n">k</span> <span class="o">=</span> <span class="mi">7</span>
+   <span class="k">if</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">run_flag</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+
+      <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;python_output_for_plot_tmp.nc&#39;</span>
+      <span class="p">[</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">u10</span><span class="p">,</span> <span class="n">z10</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_fields_here</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+      <span class="n">nt</span> <span class="o">=</span> <span class="n">u10</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+      <span class="n">ny</span> <span class="o">=</span> <span class="n">u10</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+      <span class="n">nx</span> <span class="o">=</span> <span class="n">u10</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># ================================================================</span>
+<span class="c1"># Perform hierarchical clustering</span>
+<span class="c1"># ================================================================       </span>
+<span class="c1"># Reshape data </span>
+      <span class="n">data_in</span> <span class="o">=</span> <span class="n">u10</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nt</span><span class="p">,</span><span class="n">ny</span><span class="o">*</span><span class="n">nx</span><span class="p">))</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># generate the linkage matrix</span>
+      <span class="n">Z</span> <span class="o">=</span> <span class="n">linkage</span><span class="p">(</span><span class="n">data_in</span><span class="p">,</span> <span class="s1">&#39;ward&#39;</span><span class="p">)</span>
+
+      <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+      <span class="n">fancy_dendrogram</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span><span class="n">truncate_mode</span><span class="o">=</span><span class="s1">&#39;lastp&#39;</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span><span class="n">leaf_rotation</span><span class="o">=</span><span class="mf">90.</span><span class="p">,</span><span class="n">leaf_font_size</span><span class="o">=</span><span class="mf">12.</span><span class="p">,</span><span class="n">show_contracted</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">annotate_above</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_d</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+      <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;u_dendrogram_tmp_plot.jpg&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;jpeg&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+
+<span class="c1">#      [c, coph_dists] = cophenet(Z, pdist(data_in))</span>
+
+<span class="c1"># HERE is you can use different clusters</span>
+<span class="c1"># Retrive clusters</span>
+      <span class="n">clusters</span> <span class="o">=</span> <span class="n">fcluster</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;maxclust&#39;</span><span class="p">)</span>
+
+<span class="c1"># Construct time series</span>
+      <span class="n">ts_u10</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="n">nt</span><span class="o">/</span><span class="mi">59</span><span class="p">)))</span>
+      <span class="k">for</span> <span class="n">NY</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">nt</span><span class="o">/</span><span class="mi">59</span><span class="p">)):</span>
+          <span class="k">for</span> <span class="n">NN</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+              <span class="n">ts_u10</span><span class="p">[</span><span class="n">NN</span><span class="p">,</span><span class="n">NY</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">clusters</span><span class="p">[</span><span class="n">NY</span><span class="o">*</span><span class="mi">59</span><span class="p">:</span><span class="n">NY</span><span class="o">*</span><span class="mi">59</span><span class="o">+</span><span class="mi">59</span><span class="p">]</span><span class="o">==</span><span class="n">NN</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">ts_u10</span> <span class="o">=</span> <span class="n">ts_u10</span><span class="o">/</span><span class="mf">59.</span>
+
+      <span class="n">percent_cluster</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">k</span><span class="p">))</span>
+      <span class="k">for</span> <span class="n">KK</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+          <span class="n">percent_cluster</span><span class="p">[</span><span class="n">KK</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">clusters</span><span class="o">==</span><span class="p">(</span><span class="n">KK</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">clusters</span><span class="p">)</span><span class="o">*</span><span class="mf">100.</span>
+
+      <span class="n">z10_cluster</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span>
+      <span class="k">for</span> <span class="n">KK</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+          <span class="n">z10_cluster</span><span class="p">[</span><span class="n">KK</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">z10</span><span class="p">[</span><span class="n">clusters</span><span class="o">==</span><span class="p">(</span><span class="n">KK</span><span class="o">+</span><span class="mi">1</span><span class="p">),:,:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Plot figures</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ================================================================</span>
+<span class="c1"># Plot figure</span>
+<span class="c1"># ================================================================</span>
+   <span class="n">clevel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">27.9</span><span class="p">,</span><span class="mf">31.2</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span>
+   <span class="n">cmap</span> <span class="o">=</span> <span class="n">reverse_colourmap</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">BrBG</span><span class="p">)</span>
+   <span class="n">font_size</span> <span class="o">=</span> <span class="mi">9</span>
+
+   <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+   <span class="n">center</span><span class="p">,</span> <span class="n">radius</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="mf">0.5</span>
+   <span class="n">verts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span>
+   <span class="n">circle</span> <span class="o">=</span> <span class="n">mpath</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">verts</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">+</span> <span class="n">center</span><span class="p">)</span>
+
+   <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+   <span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">forward</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+   <span class="n">factor</span> <span class="o">=</span> <span class="mf">1.</span>
+
+   <span class="k">for</span> <span class="n">II</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+       <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.05</span><span class="o">+</span><span class="mf">0.23</span><span class="o">*</span><span class="n">II</span><span class="p">,</span> <span class="mf">0.72</span><span class="p">,</span> <span class="mf">0.17</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Orthographic</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">))</span>
+       <span class="n">contourf</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">z10_cluster</span><span class="p">[</span><span class="n">II</span><span class="p">,:,:],</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">levels</span><span class="o">=</span><span class="n">clevel</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">extend</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+       <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="s1">&#39;110m&#39;</span><span class="p">)</span>
+       <span class="n">ax</span><span class="o">.</span><span class="n">set_boundary</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+       <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+       <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Cluster &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">II</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; (&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">percent_cluster</span><span class="p">[</span><span class="n">II</span><span class="p">],</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;%)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">font_size</span><span class="p">)</span>
+
+       <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.05</span><span class="o">+</span><span class="mf">0.23</span><span class="o">*</span><span class="n">II</span><span class="p">,</span> <span class="mf">0.58</span><span class="p">,</span> <span class="mf">0.17</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">])</span>
+       <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">ts_u10</span><span class="p">[</span><span class="n">II</span><span class="p">,:])</span>
+
+   <span class="k">for</span> <span class="n">II</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+       <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.05</span><span class="o">+</span><span class="mf">0.23</span><span class="o">*</span><span class="n">II</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">,</span> <span class="mf">0.17</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Orthographic</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">))</span>
+       <span class="n">contourf</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">z10_cluster</span><span class="p">[</span><span class="n">II</span><span class="o">+</span><span class="mi">4</span><span class="p">,:,:],</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">levels</span><span class="o">=</span><span class="n">clevel</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">extend</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+       <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="s1">&#39;110m&#39;</span><span class="p">)</span>
+       <span class="n">ax</span><span class="o">.</span><span class="n">set_boundary</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+       <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+       <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Cluster &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">II</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; (&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">percent_cluster</span><span class="p">[</span><span class="n">II</span><span class="o">+</span><span class="mi">4</span><span class="p">],</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;%)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">font_size</span><span class="p">)</span>
+
+       <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.05</span><span class="o">+</span><span class="mf">0.23</span><span class="o">*</span><span class="n">II</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.17</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">])</span>
+       <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">ts_u10</span><span class="p">[</span><span class="n">II</span><span class="o">+</span><span class="mi">4</span><span class="p">,:])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/z_cluster_tmp_plot.jpg"><img alt="../_images/z_cluster_tmp_plot.jpg" src="../_images/z_cluster_tmp_plot.jpg" style="width: 800.0px; height: 560.0px;" /></a>
+</div>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/u_dendrogram_tmp_plot.jpg"><img alt="../_images/u_dendrogram_tmp_plot.jpg" src="../_images/u_dendrogram_tmp_plot.jpg" style="width: 576.0px; height: 432.0px;" /></a>
+</div>
+</div>
+<div class="section" id="source">
+<h2>Source<a class="headerlink" href="#source" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://journals.ametsoc.org/view/journals/bams/99/1/bams-d-16-0259.1.xml">Kretschmer et al. (2018)</a>.</p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="hw_sea_ice.html" title="previous page">HW Sea-ice Data Illustration</a>
+    <a class='right-next' id="next-link" href="hw_deep_learning.html" title="next page">CNN Demonstration</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Yu-Chiao Liang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

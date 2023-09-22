@@ -1,0 +1,16 @@
+format: jb-article
+root: docs/index
+sections:
+- file: docs/syllabus
+- file: docs/overview_arctic
+- file: docs/snow
+- file: docs/permafrost
+- file: docs/glaciers
+- file: docs/sea_ice
+- file: docs/cause_aa
+- file: docs/effect_aa
+- file: docs/pv_ssw
+- file: docs/hw_lbm
+- file: docs/hw_sea_ice
+- file: docs/hw_polar_vortex
+- file: docs/hw_deep_learning

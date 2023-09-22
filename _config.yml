@@ -1,0 +1,42 @@
+#######################################################################################
+# Book settings
+title : Polar Climate Change
+author: Yu-Chiao Liang
+logo: 'ClimateDashboard_ArcticSeaIce_minimum_2019_map_large.jpeg'
+
+# Short description about the book
+description: >-
+  A brief introduction to Polar Climate Change.
+
+#######################################################################################
+# Execution settings
+execute:
+  execute_notebooks           : cache
+
+#######################################################################################
+# HTML-specific settings
+html:
+  home_page_in_navbar         : false
+
+# #######################################################################################
+# Interact link settings
+notebook_interface            : "notebook"
+
+#######################################################################################
+# Launch button settings
+repository:
+  url                         : https://github.com/executablebooks/quantecon-mini-example
+  path_to_book                : "mini_book"
+
+binder:
+  binderhub_url               : "https://mybinder.org"
+  text                        : "Launch binder"
+
+latex:
+  latex_engine                : "xelatex"
+  latex_documents:
+    targetname: book.tex
+
+bibtex_bibfiles:
+   - _bibliography/references.bib
+

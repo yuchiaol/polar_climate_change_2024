@@ -1,0 +1,534 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HW Linear Baroclinic Model &#8212; Polar Climate Change</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="HW Sea-ice Data Illustration" href="hw_sea_ice.html" />
+    <link rel="prev" title="Polar Stratospheric Circulation" href="pv_ssw.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/ClimateDashboard_ArcticSeaIce_minimum_2019_map_large.jpeg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Polar Climate Change</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="syllabus.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="overview_arctic.html">
+   Overview of Arctic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="snow.html">
+   Snow
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="permafrost.html">
+   Permafrost
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="glaciers.html">
+   Glaciers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sea_ice.html">
+   Sea Ice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cause_aa.html">
+   Cause of Arctic Amplification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="effect_aa.html">
+   Arctic-Midlatitude Linkage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pv_ssw.html">
+   Polar Stratospheric Circulation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   HW Linear Baroclinic Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hw_sea_ice.html">
+   HW Sea-ice Data Illustration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hw_polar_vortex.html">
+   HW Polar Vortex &amp; Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hw_deep_learning.html">
+   CNN Demonstration
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../_sources/docs/hw_lbm.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/hw_lbm.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/quantecon-mini-example/master?urlpath=tree/mini_book/docs/hw_lbm.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#individual-work">
+   Individual Work
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#credits-15">
+   Credits: 15%
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grading">
+   Grading:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deadline-xxx">
+   Deadline: xxx
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-tasks">
+   The Tasks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-model">
+   The Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-the-model">
+   Running the Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ctl-file-example">
+   CTL File Example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tropical-forcing-example">
+   Tropical Forcing Example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#diagnostic-tools">
+   Diagnostic Tools
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="hw-linear-baroclinic-model">
+<span id="python-by-example"></span><h1>HW Linear Baroclinic Model<a class="headerlink" href="#hw-linear-baroclinic-model" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="individual-work">
+<h2>Individual Work<a class="headerlink" href="#individual-work" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="credits-15">
+<h2>Credits: 15%<a class="headerlink" href="#credits-15" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="grading">
+<h2>Grading:<a class="headerlink" href="#grading" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Yu-Chiao Liang (10%)</p></li>
+</ul>
+</div>
+<div class="section" id="deadline-xxx">
+<h2>Deadline: xxx<a class="headerlink" href="#deadline-xxx" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="the-tasks">
+<h2>The Tasks<a class="headerlink" href="#the-tasks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Set up and run the model successfully.</p></li>
+<li><p>Learn how to change forcing strength, shape, and location.</p></li>
+<li><p>Reproduce the results with Central Pacific warming.</p></li>
+<li><p>Check:</p>
+<ul>
+<li><p>Background fields and forcings.</p></li>
+<li><p>Winds, sea-level pressure, geopotential height, temperature fields.</p></li>
+</ul>
+</li>
+<li><p>Use diagnostic tools to analyze the wave activity features.</p></li>
+<li><p>Group work will be to modify Arctic forcing. For example, you can move the tropical forcing to Arctic region.</p></li>
+</ul>
+</div>
+<div class="section" id="the-model">
+<h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h2>
+<p>This linear baroclinic model (LBM) was developed and maintained by Dr Michiya Hayashi.
+The official website is <a class="reference external" href="https://ccsr.aori.u-tokyo.ac.jp/~lbm/sub/lbm_4.html">here</a>.
+I have ported LBM on workstation xxx. Please ask your group leaders for login information.</p>
+</div>
+<div class="section" id="running-the-model">
+<h2>Running the Model<a class="headerlink" href="#running-the-model" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Copy folder LBM_standard to your own directory.</p></li>
+<li><p>export LNHOME=’/home/xxx/LBM_xxx/ln_solver’</p></li>
+<li><p>Edit Lmake.inc file</p></li>
+<li><p>Compile model:</p>
+<ul class="simple">
+<li><p>cd $LNHOME/model/src</p></li>
+<li><p>make clean</p></li>
+<li><p>make lib</p></li>
+<li><p>You should find a file called liblbm2t21ml11c.a under $LNHOME/model/lib/linux/</p></li>
+</ul>
+</li>
+<li><p>Builde model:</p>
+<ul class="simple">
+<li><p>cd $LNHOME/model/src</p></li>
+<li><p>make clean.special</p></li>
+<li><p>make lbm</p></li>
+<li><p>You should find a file called lbm2.t21ml11ctintgr under $LNHOME/model/bin/linux</p></li>
+</ul>
+</li>
+<li><p>Prepare forcing:</p>
+<ul class="simple">
+<li><p>cd $LNHOME/solver/util</p></li>
+<li><p>Edit SETPAR</p></li>
+<li><p>make clean</p></li>
+<li><p>make</p></li>
+<li><p>./mkfrcng</p></li>
+<li><p>cd $LNHOME/sample/</p></li>
+<li><p>You should see the forcing file you created.</p></li>
+<li><p>Use Grads to check forcing (e.g., (1) edit xxx.ctl, (2) type grads, (3) open xxx.ctl, (4) d t)</p></li>
+</ul>
+</li>
+<li><p>Run model:</p>
+<ul class="simple">
+<li><p>cd $LNHOME/model/sh/tintgr</p></li>
+<li><p>Edit xxx.csh (e.g., linear-run.t21l5.test.csh)</p></li>
+<li><p>./xxx.csh</p></li>
+<li><p>Monitor output log file under $LNHOME/data/out</p></li>
+</ul>
+</li>
+<li><p>Postprocess and visualize results</p>
+<ul class="simple">
+<li><p>cd $LNHOME/solver/util</p></li>
+<li><p>Edit SETPAR</p></li>
+<li><p>./gt2gr</p></li>
+<li><p>Convert grd file to nc file: cdo -f nc import_binary xxx.ctl output_temp.nc</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="ctl-file-example">
+<h2>CTL File Example<a class="headerlink" href="#ctl-file-example" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">sample</span> <span class="n">file</span> <span class="n">fot</span> <span class="n">products</span> <span class="n">of</span> <span class="n">a</span> <span class="n">linear</span> <span class="n">integration</span>
+<span class="n">DSET</span> <span class="o">^</span><span class="n">linear</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">grd</span>
+<span class="n">OPTIONS</span> <span class="n">SEQUENTIAL</span> <span class="n">YREV</span> <span class="n">BIG_ENDIAN</span>
+<span class="n">TITLE</span> <span class="n">time</span><span class="o">-</span><span class="n">integration</span>
+<span class="n">UNDEF</span> <span class="o">-</span><span class="mf">999.</span>
+<span class="n">XDEF</span> <span class="mi">64</span> <span class="n">LINEAR</span> <span class="mf">0.</span> <span class="mf">5.625</span>
+<span class="n">YDEF</span> <span class="mi">32</span> <span class="n">LEVELS</span> <span class="o">-</span><span class="mf">85.761</span> <span class="o">-</span><span class="mf">80.269</span> <span class="o">-</span><span class="mf">74.745</span> <span class="o">-</span><span class="mf">69.213</span> <span class="o">-</span><span class="mf">63.679</span> <span class="o">-</span><span class="mf">58.143</span> <span class="o">-</span><span class="mf">52.607</span>
+<span class="o">-</span><span class="mf">47.070</span> <span class="o">-</span><span class="mf">41.532</span> <span class="o">-</span><span class="mf">35.995</span> <span class="o">-</span><span class="mf">30.458</span> <span class="o">-</span><span class="mf">24.920</span> <span class="o">-</span><span class="mf">19.382</span> <span class="o">-</span><span class="mf">13.844</span> <span class="o">-</span><span class="mf">8.3067</span> <span class="o">-</span><span class="mf">2.7689</span>
+<span class="mf">2.7689</span> <span class="mf">8.3067</span> <span class="mf">13.844</span> <span class="mf">19.382</span> <span class="mf">24.920</span> <span class="mf">30.458</span> <span class="mf">35.995</span> <span class="mf">41.532</span> <span class="mf">47.070</span> <span class="mf">52.607</span>
+<span class="mf">58.143</span> <span class="mf">63.679</span> <span class="mf">69.213</span> <span class="mf">74.745</span> <span class="mf">80.269</span> <span class="mf">85.761</span>
+<span class="n">ZDEF</span> <span class="mi">11</span>  <span class="n">LEVELS</span> <span class="mi">1000</span> <span class="mi">950</span> <span class="mi">900</span> <span class="mi">850</span> <span class="mi">700</span> <span class="mi">500</span> <span class="mi">300</span> <span class="mi">200</span> <span class="mi">100</span> <span class="mi">30</span> <span class="mi">10</span>
+<span class="n">TDEF</span> <span class="mi">60</span> <span class="n">LINEAR</span> <span class="mi">01</span><span class="n">jan0000</span> <span class="mi">1</span><span class="n">dy</span>
+<span class="n">VARS</span> <span class="mi">8</span>
+<span class="n">psi</span>    <span class="mi">11</span> <span class="mi">99</span> <span class="n">stream</span> <span class="n">function</span>     <span class="p">[</span><span class="n">m</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">s</span><span class="p">]</span>
+<span class="n">chi</span>    <span class="mi">11</span> <span class="mi">99</span> <span class="n">velocity</span> <span class="n">potential</span>  <span class="p">[</span><span class="n">m</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">s</span><span class="p">]</span>
+<span class="n">u</span>      <span class="mi">11</span> <span class="mi">99</span> <span class="n">zonal</span> <span class="n">wind</span>          <span class="p">[</span><span class="n">m</span><span class="o">/</span><span class="n">s</span><span class="p">]</span>
+<span class="n">v</span>      <span class="mi">11</span> <span class="mi">99</span> <span class="n">meridional</span> <span class="n">wind</span>     <span class="p">[</span><span class="n">m</span><span class="o">/</span><span class="n">s</span><span class="p">]</span>
+<span class="n">w</span>      <span class="mi">11</span> <span class="mi">99</span> <span class="n">p</span><span class="o">-</span><span class="n">vertical</span> <span class="n">velocity</span> <span class="p">[</span><span class="n">hPa</span><span class="o">/</span><span class="n">s</span><span class="p">]</span>
+<span class="n">t</span>      <span class="mi">11</span> <span class="mi">99</span> <span class="n">temperature</span>         <span class="p">[</span><span class="n">K</span><span class="p">]</span>
+<span class="n">z</span>      <span class="mi">11</span> <span class="mi">99</span> <span class="n">geopotential</span> <span class="n">height</span> <span class="p">[</span><span class="n">m</span><span class="p">]</span>
+<span class="n">p</span>       <span class="mi">1</span> <span class="mi">99</span> <span class="n">surface</span> <span class="n">pressure</span>    <span class="p">[</span><span class="n">hPa</span><span class="p">]</span>
+<span class="n">ENDVARS</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="tropical-forcing-example">
+<h2>Tropical Forcing Example<a class="headerlink" href="#tropical-forcing-example" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/lbm_cp_forcing.gif"><img alt="../_images/lbm_cp_forcing.gif" src="../_images/lbm_cp_forcing.gif" style="width: 800.0px; height: 400.0px;" /></a>
+</div>
+</div>
+<div class="section" id="diagnostic-tools">
+<h2>Diagnostic Tools<a class="headerlink" href="#diagnostic-tools" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Eliassen-Palm (EP) flux</p>
+<ul>
+<li><p><a class="reference external" href="https://www.ncl.ucar.edu/Applications/EPflux.shtml">NCL function</a></p></li>
+<li><p><a class="reference external" href="https://github.com/mjucker/aostools/blob/master/climate.py">Python function</a></p></li>
+</ul>
+</li>
+<li><p>Wave Activity Fluxes</p>
+<ul>
+<li><p><a class="reference external" href="http://www.atmos.rcast.u-tokyo.ac.jp/nishii/programs/index.html">GrADS</a></p></li>
+<li><p><a class="reference external" href="https://github.com/marisolosman/Reunion_Clima/blob/master/WAF/Calculo_WAF.ipynb">Python</a></p></li>
+</ul>
+</li>
+<li><p>Rossby Wave Source</p>
+<ul>
+<li><p><a class="reference external" href="https://ajdawson.github.io/windspharm/latest/examples/rws_standard.html">Python</a></p></li>
+</ul>
+</li>
+<li><p>Streamfunction and Velocity Potential</p>
+<ul>
+<li><p><a class="reference external" href="https://ajdawson.github.io/windspharm/latest/examples/sfvp_standard.html">Python</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://journals.ametsoc.org/view/journals/atsc/47/21/1520-0469_1990_047_2546_tswrta_2_0_co_2.xml">Ting and Held (1990)</a></p></li>
+<li><p><a class="reference external" href="https://math.nyu.edu/~pauluis/TEM/TEM/Papers_files/Ellassen%26Palm_1961.pdf">Eliassen and Palm (1961)</a></p></li>
+<li><p><a class="reference external" href="https://journals.ametsoc.org/view/journals/atsc/58/6/1520-0469_2001_058_0608_afoapi_2.0.co_2.xml">Takaya and Nakamura (2001)</a></p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="pv_ssw.html" title="previous page">Polar Stratospheric Circulation</a>
+    <a class='right-next' id="next-link" href="hw_sea_ice.html" title="next page">HW Sea-ice Data Illustration</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Yu-Chiao Liang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>
